@@ -1731,6 +1731,8 @@ def completion(  # type: ignore # noqa: PLR0915
                 ):  # completion(top_k=3) > openai_config(top_k=3) <- allows for dynamic variables to be passed in
                     optional_params[k] = v
 
+            if 'n' in optional_params.keys():
+                del optional_params['n'], optional_params["stop"]
             ## COMPLETION CALL
             try:
                 response = openai_chat_completions.completion(
